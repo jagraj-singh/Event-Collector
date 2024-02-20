@@ -1,13 +1,15 @@
 import dotenv from "dotenv"
 import { databaseProviders } from "../database/database-factory.js"
 import { cacheProviders } from "../cache/cache-factory.js"
+import { WinstonLogger } from "../logger/winston.js"
+const logger = WinstonLogger.getLogger()
 
 dotenv.config()
 export default {
-  postEvents: async (events) => {
+  postEvents: async (events, options) => {
     const dbObject = databaseProviders[process.env.DB_PROVIDER]()
     await dbObject.connect()
-
+    logger.debug(`Starting to save events for requestId : ${options.requestId}`)
     let insertQuery = `INSERT INTO event (type, item, timestamp) VALUES`
     for (let event of events) {
       insertQuery += `('${event.type}','${event.item}','${event.timestamp}'),`
@@ -16,15 +18,22 @@ export default {
     let rows
     try {
       rows = await dbObject.query(insertQuery)
+      logger.debug(
+        `Saved events successfully for requestId ${options.requestId}`
+      )
     } catch (error) {
+      logger.error(
+        `Error saving events ${error.message} for requestId : ${options.requestId}`
+      )
       if (error.code === "ER_NO_REFERENCED_ROW_2") {
         throw new Error("Invalid item or type supplied in input.")
       }
+      throw new Error(error.message)
     }
     return rows
   },
 
-  getEvents: async () => {
+  getEvents: async (options) => {
     const dbObject = databaseProviders[process.env.DB_PROVIDER]()
     await dbObject.connect()
     let rows
