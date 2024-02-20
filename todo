@@ -1,0 +1,8 @@
+create assumptions file
+share with one.com
+validate date
+logging
+add caching for events //events can be large
+get/post ratelimiter
+uuid to track requests
+abstract database layer
