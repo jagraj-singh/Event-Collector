@@ -50,9 +50,6 @@ components:
     Event:
       type: object
       properties:
-        id:
-          type: integer
-          description: Event ID
         type:
           type: string
           description: Type of the event
