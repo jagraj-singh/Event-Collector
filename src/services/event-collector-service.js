@@ -9,7 +9,7 @@ export default {
   postEvents: async (events, options) => {
     const dbObject = databaseProviders[process.env.DB_PROVIDER]()
     await dbObject.connect()
-    logger.debug(`Starting to save events for requestId : ${options.requestId}`)
+    logger.info(`Starting to save events for requestId : ${options.requestId}`)
     let insertQuery = `INSERT INTO event (type, item, timestamp) VALUES`
     for (let event of events) {
       insertQuery += `('${event.type}','${event.item}','${event.timestamp}'),`
@@ -18,7 +18,7 @@ export default {
     let rows
     try {
       rows = await dbObject.query(insertQuery)
-      logger.debug(
+      logger.info(
         `Saved events successfully for requestId ${options.requestId}`
       )
     } catch (error) {
@@ -42,6 +42,9 @@ export default {
     try {
       rows = await dbObject.query(insertQuery)
     } catch (error) {
+      logger.error(
+        `Error in getting events ${error.message} for requestId: ${options.requestId}`
+      )
       throw new Error("Error retrieving events.")
     }
     return rows
