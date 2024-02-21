@@ -1,6 +1,5 @@
 import dotenv from "dotenv"
 import { databaseProviders } from "../database/database-factory.js"
-import { cacheProviders } from "../cache/cache-factory.js"
 import { WinstonLogger } from "../logger/winston.js"
 const logger = WinstonLogger.getLogger()
 
@@ -38,7 +37,7 @@ export default {
     await dbObject.connect()
     let rows
 
-    let insertQuery = `select * from event` //we need to use pagination
+    let insertQuery = `select type,item,timestamp from event` //we need to use pagination
     try {
       rows = await dbObject.query(insertQuery)
     } catch (error) {

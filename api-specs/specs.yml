@@ -5,6 +5,8 @@ info:
 paths:
   /event:
     post:
+      tags: 
+          - Events
       summary: Create a new event
       requestBody:
         description: Event data to be created
@@ -19,6 +21,8 @@ paths:
         '400':
           description: Bad request, validation error, or foreign key constraint violation
     get:
+      tags: 
+        - Events
       summary: Get a list of events
       responses:
         '200':
@@ -28,6 +32,10 @@ components:
   schemas:
     EventInput:
       type: object
+      required: 
+        - type
+        - item
+        - timestamp
       properties:
         type:
           type: string

@@ -7,7 +7,7 @@ export class MySql {
   async connect() {
     // if (MySql.db === undefined) {
     MySql.db = await mysql.createPool({
-      host: "mysql",
+      host: process.env.MYSQL_HOST,
       user: process.env.MYSQL_USER,
       database: process.env.MYSQL_DATABASE,
       password: process.env.MYSQL_PASSWORD,
