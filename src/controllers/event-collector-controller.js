@@ -15,10 +15,10 @@ export default {
       )} for requestId : ${requestId}`
     )
     try {
-      const result = await eventCollectorService.postEvents(events, {
+      await eventCollectorService.postEvents(events, {
         requestId,
       })
-      res.status(200).send(result)
+      res.sendStatus(201)
       logger.info(`events posted successfully for requestId: ${requestId}`)
     } catch (error) {
       logger.error(`error in posting events for requestId: ${requestId}`)

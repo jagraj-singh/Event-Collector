@@ -21,6 +21,7 @@ VALUES
 
 -- Create the 'event' table
 CREATE TABLE IF NOT EXISTS event (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(255) NOT NULL,
     item VARCHAR(255) NOT NULL,
     timestamp VARCHAR(255) NOT NULL,

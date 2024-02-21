@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: Event Collector API
+  version: 1.0.0
+paths:
+  /event:
+    post:
+      summary: Create a new event
+      requestBody:
+        description: Event data to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventInput'
+      responses:
+        '201':
+          description: Event created successfully
+        '400':
+          description: Bad request, validation error, or foreign key constraint violation
+    get:
+      summary: Get a list of events
+      responses:
+        '200':
+          description: List of events retrieved successfully
+
+components:
+  schemas:
+    EventInput:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of the event
+        item:
+          type: string
+          description: Item of the event
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the event
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Event ID
+        type:
+          type: string
+          description: Type of the event
+        item:
+          type: string
+          description: Item of the event
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the event
