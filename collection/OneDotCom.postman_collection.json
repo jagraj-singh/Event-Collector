@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "074800ef-d659-4712-bfc3-2d3d598f4b02",
+		"name": "OneDotCom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27394539"
+	},
+	"item": [
+		{
+			"name": "Post Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"events\": [\r\n        {\r\n            \"timestamp\": \"2024-02-20T12:30:00.000Z\",\r\n            \"item\": \"subscribe\",\r\n            \"type\": \"click\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7007/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"event"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

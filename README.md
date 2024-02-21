@@ -1,6 +1,6 @@
 # Event-Collector
 
-This repository contains a simple Node.js application that interacts with MySQL using Docker Compose. The Docker Compose configuration includes separate services for the Node.js application and MYSQL, allowing them to communicate within the same Docker network.
+This repository contains a simple Node.js application that interacts with MySQL and Redis using Docker Compose. The Docker Compose configuration includes separate services for the Node.js application, MYSQL and Redis, allowing them to communicate within the same Docker network.
 
 ## Prerequisites
 
