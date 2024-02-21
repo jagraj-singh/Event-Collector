@@ -9,9 +9,10 @@ export default {
     if (rawEvents.length === 0) {
       return res.status(400).send("No events to post")
     }
-
+    console.log(rawEvents)
     try {
       for (let event of rawEvents) {
+        event.timestamp = new Date(event.timestamp)
         await eventSchema.validate(event, { strict: true })
       }
     } catch (error) {
